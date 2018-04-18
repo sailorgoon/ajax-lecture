@@ -7,10 +7,14 @@ function onReady() {
     $.ajax({ //this contains an object
         type: 'GET',
         //where request is going
-        url: '/quote'
+        url: '/all-quotes'
     })
         .then(function (response) {
-            console.log(response);
+            $('#allQuotesDisplay').append(`
+            <p>"${response[0].quote}" - ${response[0].author} </p>
+            <p>"${response[1].quote}" - ${response[1].author} </p>
+            <p>"${response[2].quote}" - ${response[2].author} </p>
+            `)
         });
         $('#quoteButton').on('click', getQuote );
     }
@@ -21,7 +25,7 @@ function onReady() {
             url: '/quote'
         })
             .then(function (response) {
-                $('body').append(`<p>" ${response.quote}" - ${response.author} </p>`);
+                $('#randomQuoteDisplay').append(`<p>"${response.quote}" - ${response.author} </p>`);
             });
         
     }

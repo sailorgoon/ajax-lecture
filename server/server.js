@@ -6,6 +6,11 @@ const quotes = require('./array1');
 
 app.use(express.static('server/public'));
 
+app.get('/all-quotes', (req, res) => {
+    res.send(quotes);
+    console.log(quotes);
+});
+
 app.get('/quote', (req, res) => {
     const randomNumber = Math.floor(Math.random()*quotes.length);
     res.send(quotes[randomNumber]);
